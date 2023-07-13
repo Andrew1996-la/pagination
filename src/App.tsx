@@ -7,7 +7,7 @@ import {useState, useEffect} from 'react'
 
 function App() {
   const GET_POSTS_COUNT = 5;
-  const allPages = 10;
+  const ALL_PAGES = 10;
   const [posts, setPosts] = useState<IPost[]>([]);
   const [activePage, setActivePage] = useState<number>(1)
 
@@ -25,7 +25,7 @@ function App() {
     <div className="App">
       <ListPosts posts={posts}/>
       <Pagination 
-        allPages={allPages}
+        allPages={ALL_PAGES}
         activePage={activePage}
         changeActivePage={changeActivePage}/>
     </div>

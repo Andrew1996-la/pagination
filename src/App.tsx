@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ListPosts from './components/listPosts/ListPosts';
+import Pagination from './components/pagination/Pagination';
+import { IPost } from './types';
+
+import {useState, useEffect} from 'react'
 
 function App() {
+  const GET_POSTS_COUNT = 5;
+  const allPages = 10;
+  const [posts, setPosts] = useState<IPost[]>([]);
+  const [activePage, setActivePage] = useState<number>(1)
+
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/posts?_page=${activePage}&_limit=${GET_POSTS_COUNT}`)
+      .then(res => res.json())
+      .then(res => setPosts(res))
+  }, [activePage])
+
+  const changeActivePage = (page: number) => {
+    setActivePage(page)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ListPosts posts={posts}/>
+      <Pagination 
+        allPages={allPages}
+        activePage={activePage}
+        changeActivePage={changeActivePage}/>
     </div>
   );
 }

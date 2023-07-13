@@ -1,0 +1,21 @@
+.title,
+.body {
+  display: block;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.body {
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 400;
+}
+
+.post {
+  border: 1px solid black;
+  padding: 20px 40px;
+  margin: 20px 0;
+}
